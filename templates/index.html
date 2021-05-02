@@ -4,21 +4,24 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Font Awesome -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-  rel="stylesheet"
-/>
-<!-- Google Fonts -->
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-  rel="stylesheet"
-/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
-  rel="stylesheet"
-/>
+    
+        <!-- Font Awesome -->
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          rel="stylesheet"
+        />
+
+        <!-- Google Fonts -->
+        <link
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet"
+        />
+
+        <!-- MDB -->
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+          rel="stylesheet"
+        />
         <title>CoWin Notify</title>
     </head>
 
@@ -45,19 +48,18 @@
 
                 <div class="col-md-3">
                   <div class="form-outline">
-                    <select id="inputState" class="form-select">
+                    <select id="inputAge" class="form-select">
                       <option selected disabled hidden>Choose Age Group</option>
-                      <option>18+</option>
-                      <option>45+</option>
+                      <option value="18">18+</option>
+                      <option value="45">45+</option>
                     </select>
-                    <label for="inputState" class="form-label visually-hidden">State</label>
+                    <label for="inputAge" class="form-label visually-hidden">Age</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-outline">
-                    <select id="inputState" class="form-select">
+                    <select id="inputState" class="form-select" onchange="populateDistricts();">
                       <option selected disabled hidden>Choose State</option>
-                      <option>...</option>
                     </select>
                     <label for="inputState" class="form-label visually-hidden">State</label>
                   </div>
@@ -67,14 +69,13 @@
                   <div class="form-outline">
                     <select id="inputDistrict" class="form-select">
                       <option selected disabled hidden>Choose District</option>
-                      <option>...</option>
                     </select>
                     <label for="inputDistrict" class="form-label visually-hidden">District</label>
                   </div>
                 </div>
                 
               <div class="col-md-12">
-                <button type="submit" class="btn btn-primary btn-lg">Notify me!</button>
+                <button type="submit" class="btn btn-primary btn-lg" onclick="getValues(); return false;">Notify me!</button>
               </div>
 
               </div>
@@ -85,4 +86,47 @@
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
   </body>
+
+  <script type="text/javascript">
+      function Get(yourUrl) {
+        var Httpreq = new XMLHttpRequest();
+        Httpreq.open("GET", yourUrl, false);
+        Httpreq.send(null);
+        return Httpreq.responseText;          
+      }
+
+      let state_dropdown = document.getElementById('inputState');
+
+      const url = 'https://cdn-api.co-vin.in/api/v2/admin/location/states';
+      var obj = JSON.parse(Get(url));
+      
+      obj=obj['states']
+
+      for (var i = 0; i < obj.length; i++) {
+        state_dropdown.innerHTML = state_dropdown.innerHTML + '<option value="' + obj[i]['state_id'] + '">' + obj[i]['state_name'] + '</option>';
+      }
+
+      function populateDistricts() {
+        let district_dropdown = document.getElementById('inputDistrict');
+        const url = 'https://cdn-api.co-vin.in/api/v2/admin/location/districts/'+state_dropdown.value;
+        var obj = JSON.parse(Get(url));
+
+        obj=obj['districts']
+        
+        district_dropdown.innerHTML="<option selected disabled hidden>Choose District</option>"
+
+        for (var i = 0; i < obj.length; i++) {
+          district_dropdown.innerHTML = district_dropdown.innerHTML + '<option value="' + obj[i]['district_id'] + '">' + obj[i]['district_name'] + '</option>';
+        }
+      }
+
+      function getValues() {
+        console.log(document.getElementById('inputDistrict').value)
+        console.log(document.getElementById('inputAge').value)
+        console.log(document.getElementById('inputEmail').value)
+        console.log(document.getElementById('inputPhone').value)
+      }
+
+  </script>
+  
 </html>
