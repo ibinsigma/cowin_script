@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+  rel="stylesheet"
+/>
+        <title>CoWin Notify</title>
+    </head>
+
+    <body>
+        <div class="container align-content-center text-center">
+            <h1 class="display-3 my-5">CoWin Notify</h1>
+
+            <form class="d-flex mt-4 g-3 g-lg-5 text-left" style="height: 70vh;">
+
+              <div class="row d-flex align-content-between mt-5">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <input type="email" class="form-control" id="inputEmail" />
+                    <label for="inputEmail" class="form-label">Email</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <input type="number" class="form-control" id="inputPhone" />
+                    <label for="inputPhone" class="form-label">Phone</label>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="form-outline">
+                    <select id="inputState" class="form-select">
+                      <option selected disabled hidden>Choose Age Group</option>
+                      <option>18+</option>
+                      <option>45+</option>
+                    </select>
+                    <label for="inputState" class="form-label visually-hidden">State</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-outline">
+                    <select id="inputState" class="form-select">
+                      <option selected disabled hidden>Choose State</option>
+                      <option>...</option>
+                    </select>
+                    <label for="inputState" class="form-label visually-hidden">State</label>
+                  </div>
+                </div>
+
+                <div class="col-md-5">
+                  <div class="form-outline">
+                    <select id="inputDistrict" class="form-select">
+                      <option selected disabled hidden>Choose District</option>
+                      <option>...</option>
+                    </select>
+                    <label for="inputDistrict" class="form-label visually-hidden">District</label>
+                  </div>
+                </div>
+                
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-primary btn-lg">Notify me!</button>
+              </div>
+
+              </div>
+              
+              </form>
+        </div>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+  </body>
+</html>
