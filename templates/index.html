@@ -29,26 +29,26 @@
         <div class="container align-content-center text-center">
             <h1 class="display-3 my-5">CoWin Notify</h1>
 
-            <form class="d-flex mt-4 g-3 g-lg-5 text-left" style="height: 70vh;">
+            <form class="d-flex mt-4 g-3 g-lg-5 text-left" style="height: 70vh;" method="POST">
 
               <div class="row d-flex align-content-between mt-5">
                 <div class="col-md-6">
                   <div class="form-outline">
-                    <input type="email" class="form-control" id="inputEmail" />
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"/>
                     <label for="inputEmail" class="form-label">Email</label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-outline">
-                    <input type="number" class="form-control" id="inputPhone" />
+                    <input type="number" class="form-control" id="inputPhone" name="inputPhone"/>
                     <label for="inputPhone" class="form-label">Phone</label>
                   </div>
                 </div>
 
                 <div class="col-md-3">
                   <div class="form-outline">
-                    <select id="inputAge" class="form-select">
+                    <select id="inputAge" class="form-select" name="inputAge">
                       <option selected disabled hidden>Choose Age Group</option>
                       <option value="18">18+</option>
                       <option value="45">45+</option>
@@ -67,7 +67,7 @@
 
                 <div class="col-md-5">
                   <div class="form-outline">
-                    <select id="inputDistrict" class="form-select">
+                    <select id="inputDistrict" class="form-select" name="inputDistrict">
                       <option selected disabled hidden>Choose District</option>
                     </select>
                     <label for="inputDistrict" class="form-label visually-hidden">District</label>
@@ -75,7 +75,7 @@
                 </div>
                 
               <div class="col-md-12">
-                <button type="submit" class="btn btn-primary btn-lg" onclick="getValues(); return false;">Notify me!</button>
+                <button type="submit" class="btn btn-primary btn-lg">Notify me!</button>
               </div>
 
               </div>
@@ -125,7 +125,14 @@
         console.log(document.getElementById('inputAge').value)
         console.log(document.getElementById('inputEmail').value)
         console.log(document.getElementById('inputPhone').value)
+        let selectedArr = [];
+        selectedArr.push(document.getElementById('inputDistrict').value);
+        selectedArr.push(document.getElementById('inputAge').value);
+        selectedArr.push(document.getElementById('inputEmail').value);
+        selectedArr.push(document.getElementById('inputPhone').value);
+        console.log(selectedArr);
       }
+
 
   </script>
   
