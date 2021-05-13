@@ -39,7 +39,8 @@ def cowin():
     log.info('  SESSION DATA  ' + str(data))
     response_json_dict = get_json(data['district'], date_today)
     final_dict_open = parse_response_json(response_json_dict)
-    return final_dict_open
+    # return final_dict_open
+    return render_template('result.html', data=final_dict_open)
 
 
 def get_json(district_id, date):
@@ -66,7 +67,8 @@ def parse_response_json(response_json):
                 flag = True
                 open_sessions.append(session_of_center)
         if flag:
-            open_centers[center_name] = open_sessions
+            open_centers["name"] = center_name
+            open_centers["date"] = open_sessions[0]
     if len(open_centers) == 0:
         return "Sorry! No centers available right now"
     return open_centers
